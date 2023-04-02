@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            font-size: 64.5%;
+        }
+        nav{
+            padding: 1rem;
+            background-color: aliceblue;
+        }
+        nav h1{
+            font-size: 4rem;
+            text-align: center;
+        }
+
+        footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: rgb(245 245 245);
+            position: absolute;
+            bottom: 0%;
+            width: 100%;
+        }
+        .copyright{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .copyright h3{
+            font-size: 2.4rem;
+        }
+        .copyright span{
+            font-size: 4.5rem;
+        }
+        .copyright p{
+            font-size: 1.5rem;
+        }
+        footer img{
+            width: 4rem;
+            height: 4rem;
+            border-radius: 100%;
+        }
+
+        @media screen and (max-width:600px) {
+            footer{
+                flex-direction: column;
+            }
+        }
+        {% block style %}{% endblock style%}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Jayesh Rathi Blogs</h1>
+        </nav>
+    </header>
+    {% block body %} {% endblock body %}
+    <footer>
+        <div class="copyright">
+            <img src="https://avatars.githubusercontent.com/u/65055605?v=4" alt="profile photo">
+            <h3>JAYESH RATHI</h3>
+            <span>|</span>
+            <p>Copyright © 2023 jayeshrathi.com</p>
+        </div>
+        <div class="socialMedia">
+            <a href="https://github.com/jayeshrathi6055?tab=repositories"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github"></a>
+            <a href="https://in.linkedin.com/in/jayesh-rathi-8594b4180"><img src="https://static.vecteezy.com/system/resources/previews/018/930/587/original/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="linkedin"></a>
+        </div>
+    </footer>
+</body>
+</html>

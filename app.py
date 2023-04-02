@@ -1,10 +1,38 @@
-from flask import Flask,render_template
+from crypt import methods
+from flask import Flask,render_template, jsonify
+from flask_pymongo import PyMongo
+from bson.json_util import dumps
+import os
+from markupsafe import escape
 
 app = Flask(__name__)
 
-@app.route("/")
-def portfolio():
-    return render_template('index.html')
+# Mongodb Connection
+# mongodb_client = PyMongo(app, uri="mongodb://localhost:27017/todo_db")
+# db = mongodb_client.db
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Home Page
+@app.route("/", methods=['Get'])
+def portfolio():
+    return render_template(escape('index.html'))
+
+# Blogs Page
+@app.route("/blogs/<slug>", methods=['Get'])
+def baseBlog(slug):
+    files = os.listdir("./templates/blogs/")
+    slug = slug.replace("-","_")
+    if slug+".html" in files:
+        return render_template(escape(f"./blogs/{slug}.html"))
+    else:
+        return render_template("./invalid_route.html")
+
+# Not Found Handler
+@app.errorhandler(404)
+def invalid_route(e):
+    return render_template("./invalid_route.html")
+
+# @app.route("/person")
+# def person():
+#     todos = db.todos.find()
+#     todos = list(todos)
+#     return dumps(todos)

@@ -1,0 +1,26 @@
+{% extends './base.html' %}
+
+{% block style %}
+
+.not_found{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:25rem auto;
+}
+
+.not_found h2{
+    font-size:6rem;
+    text-align:center;
+}
+
+{% endblock style %}
+
+{% block body %}
+
+<div class="not_found">
+    <h2>404 Not Found</h2>
+</div>
+
+
+{% endblock body %}
