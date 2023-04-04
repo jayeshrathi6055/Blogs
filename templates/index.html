@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/65055605?v=4"/>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/65055605?v=4" />
     <title>Jayesh Rathi</title>
     <link rel="stylesheet" href="{{url_for('static',filename='styles/style.css')}}">
 </head>
@@ -19,6 +19,14 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li class="dropdown">
+                    <a>Blogs</a>
+                        <div class="blogs_links">
+                            {% for blog in blogs %}
+                            <a href="/blogs/{{blog.replace('_','-')}}">{{blog.replace("_", " ")}}</a>
+                            {% endfor %}
+                        </div>
+                </>
             </ul>
         </nav>
     </header>
@@ -90,7 +98,8 @@
                     <img src="https://1000logos.net/wp-content/uploads/2021/09/Optum-Logo.jpg" alt="Image">
                 </div>
                 <div class="about_card">
-                    <p>I have been working here as a Software Engineer since 2022. I have worked on Spring Reactive/Webflux with Kafka, Spring boot, Postgresql and Cucumber Framework.</p>
+                    <p>I have been working here as a Software Engineer since 2022. I have worked on Spring
+                        Reactive/Webflux with Kafka, Spring boot, Postgresql and Cucumber Framework.</p>
                     <a href="https://www.optum.com/">Visit Website</a>
                 </div>
             </div>
@@ -105,8 +114,11 @@
             <p>Copyright © 2023 jayeshrathi.com</p>
         </div>
         <div class="socialMedia">
-            <a href="https://github.com/jayeshrathi6055?tab=repositories"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github"></a>
-            <a href="https://in.linkedin.com/in/jayesh-rathi-8594b4180"><img src="https://static.vecteezy.com/system/resources/previews/018/930/587/original/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="linkedin"></a>
+            <a href="https://github.com/jayeshrathi6055?tab=repositories"><img
+                    src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github"></a>
+            <a href="https://in.linkedin.com/in/jayesh-rathi-8594b4180"><img
+                    src="https://static.vecteezy.com/system/resources/previews/018/930/587/original/linkedin-logo-linkedin-icon-transparent-free-png.png"
+                    alt="linkedin"></a>
         </div>
     </footer>
 </body>

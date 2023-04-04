@@ -14,9 +14,11 @@ app = Flask(__name__)
 # Home Page
 @app.route("/", methods=['Get'])
 def portfolio():
-    return render_template(escape('index.html'))
+    files = os.listdir("./templates/blogs/")
+    files = [file.replace(".html","") for file in files]
+    return render_template(escape('index.html'),blogs = files)
 
-# Blogs Page
+# Blog Page
 @app.route("/blogs/<slug>", methods=['Get'])
 def baseBlog(slug):
     files = os.listdir("./templates/blogs/")
