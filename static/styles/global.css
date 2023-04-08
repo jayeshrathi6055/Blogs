@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@500&display=swap');
+
+h1 {
+    font-size: 5rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 2rem;
+}
+
+a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: black;
+}
+
+.blog_width {
+    width: 80%;
+    margin: auto;
+}
+
+.blog_title h1 {
+    text-align: center;
+    padding: 3rem 0rem;
+}
+
+.blog_information {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.blog_writer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.blog_writer img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+}
+
+.blog_content {
+    padding: 2rem 0rem;
+}
+
+.content_title {
+    background-color: rgb(205, 205, 205);
+}
+
+.content_body {
+    background-color: rgb(205, 205, 205);
+    padding-left: 3rem;
+    padding-bottom: 2rem;
+}
+
+.content_body ul li{
+    font-size: 2rem;
+}
+
+.content_body ul li a {
+    display: block;
+    transition: all 0.1s ease-in;
+}
+
+.content_body ul li a:hover {
+    background-color: black;
+    color: white;
+    padding: 0.8rem;
+}
+
+.content_title h2 {
+    text-align: center;
+}
+
+.code_editor {
+    background-color: #272822;
+    padding: 3rem 1rem;
+    position: relative;
+}
+
+.code_editor code {
+    color: #f8f8f2;
+    font-family: monospace;
+    display: block;
+    overflow: auto;
+}
+
+.code_editor button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    background-color: transparent;
+}

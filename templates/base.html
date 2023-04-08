@@ -10,6 +10,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Alkatra', cursive;
+            scroll-behavior: smooth;
         }
         html{
             font-size: 64.5%;
@@ -29,9 +31,7 @@
             align-items: center;
             padding: 1rem;
             background-color: rgb(245 245 245);
-            position: absolute;
-            bottom: 0%;
-            width: 100%;
+            margin-top: 2rem;
         }
         .copyright{
             display: flex;
@@ -59,8 +59,9 @@
                 flex-direction: column;
             }
         }
-        {% block style %}{% endblock style%}
     </style>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/global.css')}}">
+    {% block style %}{% endblock style%}
 </head>
 <body>
     <header>
@@ -82,4 +83,5 @@
         </div>
     </footer>
 </body>
+<script src="{{url_for('static',filename='js/script.js')}}"></script>
 </html>

@@ -1,1 +1,296 @@
 {% extends './base.html' %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/spring_webflux_with_postgresql.css')}}">
+{% endblock style%}
+
+{% block body %}
+<div class="blog_title blog_width">
+    <h1>SPRING WEBFLUX/REACTIVE WITH POSTGRESQL</h1>
+</div>
+
+<div class="blog_information blog_width">
+    <div class="blog_writer">
+        <img src="https://avatars.githubusercontent.com/u/65055605?v=4" alt="profile photo">
+        <p><b>Jayesh Rathi</b></p>
+    </div>
+    <div class="blog_date">
+        <p>Published: April 08, 2023</p>
+    </div>
+</div>
+
+<div class="blog_content blog_width">
+    <div class="content_title">
+        <h2>Content</h2>
+    </div>
+    <div class="content_body">
+        <ul>
+            <li><a href="#section1">Make Project using Spring Initializer</a></li>
+            <li><a href="#section2">Configure Propertie File</a></li>
+            <li><a href="#section3">Make Entity</a></li>
+            <li><a href="#section4">Make Repository</a></li>
+            <li><a href="#section5">Make Service</a></li>
+            <li><a href="#section6">Run Controller</a></li>
+            <li><a href="#section7">Run Project</a></li>
+        </ul>
+    </div>
+</div>
+
+<section id="section1" class="blog_width">
+    <h2>MAKE PROJECT USING SPRING INITIALIZER</h2>
+    <div>
+        <ul>
+            <li>
+                <p>Go to <a href="https://start.spring.io/" target="_blank">Spring Initializer</a> and configure
+                    project.</p>
+                <img src="{{url_for('static',filename='images/spring_webflux_with_postgresql/spring_initializer.png')}}"
+                    alt="Spring Initializer">
+            </li>
+            <li>Click on Generate button to download project in your machine.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="section2" class="blog_width">
+    <h2>Configure Propertie File</h2>
+    <div>
+        <ul>
+            <li>Go to the <b>src/main/resources/application.properties</b> file.</li>
+            <li>
+                <p>Write below properties in your file - </p>
+                <p class="code_editor">
+                    <code>spring.r2dbc.url = r2dbc:postgresql://localhost:5432/database_name</code>
+                    <code>#spring.r2dbc.username = username</code>
+                    <code>#spring.r2dbc.password = password</code>
+                    <code>spring.r2dbc.driver-class-name =  org.postgresql.Driver</code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section3" class="blog_width">
+    <h2>Make Entity</h2>
+    <div>
+        <ul>
+            <li>Make <b>Entity</b> folder in src/main/java/com/example/Customer/ folder.</li>
+            <li>Make <b>CustomerEntity.java</b> file in Entity folder.</li>
+            <li>
+                <p>Write below code in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        package com.example.Customer.Models;<br>
+
+import lombok.AllArgsConstructor;<br>
+import lombok.Generated;<br>
+import lombok.Getter;<br>
+import lombok.NoArgsConstructor;<br>
+import lombok.Setter;<br>
+import org.springframework.boot.autoconfigure.domain.EntityScan;<br>
+import org.springframework.data.annotation.Id;<br>
+import org.springframework.data.relational.core.mapping.Column;<br>
+import org.springframework.data.relational.core.mapping.Table;<br>
+<br>
+@Table(name = "customer")<br>
+@EntityScan<br>
+@Setter<br>
+@Getter<br>
+@NoArgsConstructor<br>
+@AllArgsConstructor<br>
+public class CustomerEntity {<br>
+	@Id<br>
+	@Column("id")<br>
+	private int id;<br>
+	@Column("name")<br>
+	private String name;<br>
+	@Column("age")<br>
+	private int age;<br>
+	@Column("number")<br>
+	private int number;<br>
+}
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+            <li>
+                Make a table in your database whose name is customer and add column as in your CustomerEntity file with same name defined in @Column. Remember, set id to auto-increment in your table.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section4" class="blog_width">
+    <h2>Make Repository</h2>
+    <div>
+        <ul>
+            <li>Make <b>Repository</b> folder in src/main/java/com/example/Customer/ folder.</li>
+            <li>Make <b>CustomerRepository.java</b> file in Repository folder.</li>
+            <li>
+                <p>Write below code in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        package com.example.Customer.Repository;<br>
+
+import com.example.Customer.Models.CustomerEntity;<br>
+import org.springframework.data.r2dbc.repository.Query;<br>
+import org.springframework.data.r2dbc.repository.R2dbcRepository;<br>
+import org.springframework.data.repository.query.Param;<br>
+import org.springframework.stereotype.Repository;<br>
+import reactor.core.publisher.Flux;<br>
+import reactor.core.publisher.Mono;<br>
+import java.util.List;<br>
+<br>
+@Repository<br>
+public interface CustomerRepository extends R2dbcRepository&ltCustomerEntity,Integer&gt {<br>
+	@Query("select * from person")<br>
+	Flux&ltCustomerEntity&gt getAll();<br>
+    <br>
+	@Query("select * from person where id=:1")<br>
+	Mono&ltCustomerEntity&gt getOne(int Id);<br>
+    <br>
+	@Query("delete from person where id=:Id")<br>
+	Mono&ltVoid&gt del(@Param("Id") int Id);<br>
+    <br>
+	@Query(value = "insert into person (name, age, number) values (:1, :2, :3)")<br>
+	Mono&ltCustomerEntity&gt insert(String name, int age, int number);<br>
+    <br>
+	@Query(value = "update person set name=:1, age=:2, number=:3 where id = :4")<br>
+	Mono&ltCustomerEntity&gt update(String name, int age, int number, int id);<br>
+}<br>
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section5" class="blog_width">
+    <h2>Make Service</h2>
+    <div>
+        <ul>
+            <li>Make <b>Services</b> folder in src/main/java/com/example/Customer/ folder.</li>
+            <li>Make <b>CustomerService.java</b> file in Service folder.</li>
+            <li>
+                <p>Write below code in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        package com.example.Customer.Services;<br>
+                        <br>
+import com.example.Customer.Models.CustomerEntity;<br>
+import com.example.Customer.Repository.CustomerRepository;<br>
+import org.springframework.beans.factory.annotation.Autowired;<br>
+import org.springframework.stereotype.Service;<br>
+import reactor.core.publisher.Flux;<br>
+import reactor.core.publisher.Mono;<br>
+
+<br>
+
+@Service<br>
+public class CustomerService {<br>
+	@Autowired<br>
+	private CustomerRepository repository;<br>
+    <br>
+	public Flux&ltCustomerEntity&gt allCustomer(){<br>
+		return repository.getAll();<br>
+	}<br>
+    <br>
+	public Mono&ltCustomerEntity&gt getCustomer(int id){<br>
+		return repository.getOne(id);<br>
+	}<br>
+    <br>
+	public Mono&ltCustomerEntity&gt saveCustomer(CustomerEntity pe){<br>
+		return repository.insert(pe.getName(),pe.getAge(),pe.getNumber());<br>
+	}<br>
+    <br>
+	public Mono&ltCustomerEntity&gt updateCustomer(CustomerEntity pe, int id){<br>
+		return repository.update(pe.getName(),pe.getAge(),pe.getNumber(), id);<br>
+	}<br>
+    <br>
+	public Mono&ltVoid&gt deleteCustomer(int id){<br>
+		return repository.del(id);<br>
+	}<br>
+}<br>
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section6" class="blog_width">
+    <h2>Make Controller</h2>
+    <div>
+        <ul>
+            <li>Make <b>Controller</b> folder in src/main/java/com/example/Customer/ folder.</li>
+            <li>Make <b>CustomerController.java</b> file in Controller folder.</li>
+            <li>
+                <p>Write below code in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        package com.example.Customer.Controller;<br>
+                        <br>
+                        import com.example.Customer.Models.CustomerEntity;<br>
+                        import com.example.Customer.Services.CustomerService;<br>
+                        import org.springframework.beans.factory.annotation.Autowired;<br>
+                        import org.springframework.web.bind.annotation.DeleteMapping;<br>
+                        import org.springframework.web.bind.annotation.GetMapping;<br>
+                        import org.springframework.web.bind.annotation.PathVariable;<br>
+                        import org.springframework.web.bind.annotation.PostMapping;<br>
+                        import org.springframework.web.bind.annotation.PutMapping;<br>
+                        import org.springframework.web.bind.annotation.RequestBody;<br>
+                        import org.springframework.web.bind.annotation.RestController;<br>
+                        import reactor.core.publisher.Flux;<br>
+                        import reactor.core.publisher.Mono;<br>
+                        <br>
+                        @RestController<br>
+                        public class CustomerController {<br>
+                            @Autowired<br>
+                            private CustomerService service;<br>
+                            <br>
+                            @GetMapping("/allPerson")<br>
+                            public Flux&ltCustomerEntity&gt getAll(){<br>
+                                return service.allCustomer();<br>
+                            }<br>
+                            <br>
+                            @GetMapping("/getPerson/{id}")<br>
+                            public Mono&ltCustomerEntity&gt getPerson(@PathVariable String id){<br>
+                                return service.getCustomer(Integer.parseInt(id.trim()));<br>
+                            }<br>
+                            <br>
+                            @DeleteMapping("/deletePerson/{id}")<br>
+                            public Mono&ltVoid&gt deletePerson(@PathVariable String id){<br>
+                                return service.deleteCustomer(Integer.parseInt(id));<br>
+                            }<br>
+                            <br>
+                            @PostMapping("/createPerson")<br>
+                            public Mono&ltCustomerEntity&gt createPerson(@RequestBody CustomerEntity customerEntity){<br>
+                                return service.saveCustomer(customerEntity);<br>
+                            }<br>
+                            @PutMapping("/updatePerson/{id}")<br>
+                            public Mono&ltCustomerEntity&gt updatePerson(@RequestBody CustomerEntity customerEntity, @PathVariable String id){<br>
+                                return service.updateCustomer(customerEntity,Integer.parseInt(id));<br>
+                            }<br>
+                        }<br>
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section7" class="blog_width">
+    <h2>Run Project</h2>
+    <div>
+        <ul>
+            <li>Open terminal.</li>
+            <li>Go to your project folder using <i><b>cd pathName</b></i> command in your terminal.</li>
+            <li>Run <i><b>mvn clean install</b></i>. Note - Install maven if it is not present.</li>
+            <li>At last, run src/main/java/com/example/Customer/CustomerApplication.java file.</li>
+            <li>You can check end points on <a href="http://localhost:9000/">http://localhost:9000/</a>.</li>
+        </ul>
+    </div>
+</section>
+{% endblock body %}
