@@ -1,0 +1,223 @@
+{% extends './base.html' %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/spring_webflux_with_mongodb.css')}}">
+{% endblock style%}
+
+{% block body %}
+<div class="blog_title blog_width">
+    <h1>SPRING WEBFLUX/REACTIVE WITH MONGODB</h1>
+</div>
+
+<div class="blog_information blog_width">
+    <div class="blog_writer">
+        <img src="https://avatars.githubusercontent.com/u/65055605?v=4" alt="profile photo">
+        <p><a href="/">Jayesh Rathi</a></p>
+    </div>
+    <div class="blog_date">
+        <p>Published: April 08, 2023</p>
+    </div>
+</div>
+
+<div class="blog_content blog_width">
+    <div class="content_title">
+        <h2>Content</h2>
+    </div>
+    <div class="content_body">
+        <ul>
+            <li><a href="#section1">Make Project using Spring Initializer</a></li>
+            <li><a href="#section2">Configure Propertie File</a></li>
+            <li><a href="#section3">Make Entity</a></li>
+            <li><a href="#section4">Make Repository</a></li>
+            <li><a href="#section5">Run Controller</a></li>
+            <li><a href="#section6">Run Project</a></li>
+        </ul>
+    </div>
+</div>
+
+<section id="section1" class="blog_width">
+    <h2>MAKE PROJECT USING SPRING INITIALIZER</h2>
+    <div>
+        <ul>
+            <li>
+                <p>Go to <a href="https://start.spring.io/" target="_blank">Spring Initializer</a> and configure
+                    project.</p>
+                <img src="{{url_for('static',filename='images/spring_webflux_with_mongodb/spring_initializer.png')}}"
+                    alt="Spring Initializer">
+            </li>
+            <li>Click on Generate button to download project in your machine.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="section2" class="blog_width">
+    <h2>Configure Properties File</h2>
+    <div>
+        <ul>
+            <li>Go to the <b>src/main/resources/application.properties</b> file.</li>
+            <li>
+                <p>Write below properties in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        spring.data.mongodb.host= localhost <br>
+spring.data.mongodb.port= 27017<br>
+spring.data.mongodb.database= database_name<br>
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section3" class="blog_width">
+    <h2>Make Entity</h2>
+    <div>
+        <ul>
+            <li>Make <b>Entity</b> folder in src/main/java/com/example/spring_reactive_mongo/ folder.</li>
+            <li>Make <b>CustomerEntity.java</b> file in Entity folder.</li>
+            <li>
+                <p>Write below code in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        package com.example.spring_reactive_mongo.Entity;<br>
+                        <br>
+
+import lombok.AllArgsConstructor;<br>
+import lombok.Getter;<br>
+import lombok.NoArgsConstructor;<br>
+import lombok.Setter;<br>
+import org.springframework.data.annotation.Id;<br>
+import org.springframework.data.mongodb.core.mapping.Document;<br>
+<br>
+@Getter<br>
+@Setter<br>
+@NoArgsConstructor<br>
+@AllArgsConstructor<br>
+@Document(collection = "customer")<br>
+public class CustomerEntity {<br>
+	@Id<br>
+	private String id;<br>
+	private String name;<br>
+	private int age;<br>
+    <br>
+}<br>
+
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+            <li>
+                Make a Document in your database whose name is customer and add field as in your CustomerEntity file
+                with same name.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section4" class="blog_width">
+    <h2>Make Repository</h2>
+    <div>
+        <ul>
+            <li>Make <b>Repo</b> folder in src/main/java/com/example/spring_reactive_mongo/ folder.</li>
+            <li>Make <b>CustomerRepository.java</b> file in Repository folder.</li>
+            <li>
+                <p>Write below code in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        package com.example.spring_reactive_mongo.Repo;<br>
+                        <br>
+import com.example.spring_reactive_mongo.Model.CustomerEntity;<br>
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;<br>
+<br>
+public interface PersonRepo extends ReactiveMongoRepository&ltCustomerEntity, String&gt {<br>
+}<br>
+
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section5" class="blog_width">
+    <h2>Make Controller</h2>
+    <div>
+        <ul>
+            <li>Make <b>Controller</b> folder in src/main/java/com/example/spring_reactive_mongo/ folder.</li>
+            <li>Make <b>CustomerController.java</b> file in Controller folder.</li>
+            <li>
+                <p>Write below code in your file - </p>
+                <p class="code_editor">
+                    <code>
+                        package com.example.spring_reactive_mongo.Controller;<br>
+                        <br>
+import com.example.spring_reactive_mongo.Model.CustomerEntity;<br>
+import com.example.spring_reactive_mongo.Repo.PersonRepo;<br>
+import org.springframework.beans.factory.annotation.Autowired;<br>
+import org.springframework.web.bind.annotation.DeleteMapping;<br>
+import org.springframework.web.bind.annotation.GetMapping;<br>
+import org.springframework.web.bind.annotation.PathVariable;<br>
+import org.springframework.web.bind.annotation.PostMapping;<br>
+import org.springframework.web.bind.annotation.PutMapping;<br>
+import org.springframework.web.bind.annotation.RequestBody;<br>
+import org.springframework.web.bind.annotation.RestController;<br>
+import reactor.core.publisher.Flux;<br>
+import reactor.core.publisher.Mono;<br>
+<br>
+@RestController<br>
+public class PersonController {<br>
+	@Autowired<br>
+	private PersonRepo repo;<br>
+    <br>
+	@GetMapping("/allPerson")<br>
+	public Flux&ltCustomerEntity&gt getAll(){<br>
+		return repo.findAll();<br>
+	}<br>
+    <br>
+	@GetMapping("/getPerson/{id}")<br>
+	public Mono&ltCustomerEntity&gt getOne(@PathVariable String id){<br>
+		return repo.findById(id);<br>
+	}<br>
+    <br>
+	@PostMapping("/createPerson")<br>
+	public Mono&ltCustomerEntity&gt savePerson(@RequestBody CustomerEntity CustomerEntity){<br>
+		return repo.insert(CustomerEntity);<br>
+	}<br>
+	@PutMapping("/updatePerson")<br>
+	public Mono&ltCustomerEntity&gt updatePerson(@RequestBody CustomerEntity CustomerEntity){<br>
+		return repo.findById(CustomerEntity.getId()).map(i->{<br>
+			i.setAge(CustomerEntity.getAge());<br>
+			i.setName(CustomerEntity.getName());<br>
+			return i;<br>
+		}).flatMap(repo::save);<br>
+	}<br>
+    <br>
+	@DeleteMapping("/deletePerson/{id}")<br>
+	public Mono&ltVoid&gt deletePerson(@PathVariable String id){<br>
+		return repo.deleteById(id);<br>
+	}<br>
+}<br>
+
+                    </code>
+                    <button onClick="copy_text(this)">Copy</button>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="section6" class="blog_width">
+    <h2>Run Project</h2>
+    <div>
+        <ul>
+            <li>Open terminal.</li>
+            <li>Go to your project folder using <i><b>cd pathName</b></i> command in your terminal.</li>
+            <li>Run <i><b>mvn clean install</b></i>. Note - Install maven if it is not present.</li>
+            <li>At last, run src/main/java/com/example/spring_reactive_mongo/SpringReactiveMongoApplication.java file.
+            </li>
+            <li>You can check end points on <a href="http://localhost:8080/">http://localhost:8080/</a>.</li>
+        </ul>
+    </div>
+</section>
+{% endblock body %}

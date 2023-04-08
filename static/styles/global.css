@@ -53,6 +53,10 @@ a {
     border-radius: 100%;
 }
 
+.blog_writer p a:hover{
+    text-decoration: underline;
+}
+
 .blog_content {
     padding: 2rem 0rem;
 }
