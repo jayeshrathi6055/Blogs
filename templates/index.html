@@ -5,6 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index follow">
+    <meta name="author" content="Jayesh Rathi from JIET">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Full stack web development, Electrical Engineer Guides, Jayesh Rathi Portfolio, Jayesh Rathi JIET">
+    <meta property="og:description"
+        content="Project based guides for web developer, full stack web developer, frontend, backend, software developer and software engineers. Showing who is Jayesh Rathi.">
+    <meta name="keywords"
+        content="spring webflux, spring, spring reactive, spring with postgresql, spring webflux with postgresql, spring reactive with postgresql, spring with postgres, spring reactive with postgres, spring webflux with postgres, spring postgresql, spring reactive postgresql, spring webflux postgresql, Jayesh Rathi, Jayesh, Rathi, Jayesh Portfolio, Portfolio, JR, Jayesh JIET, JIET Student, Rathi JIET">
+    <meta name="description"
+        content="Basic project based on spring reactive or webflux with postgresql or postgres. Basic project will help begineers who work as a web developer, backend Engineer, Software Developer or Software Engineer to start and enhance/improve learning. Jayesh rathi Portfolio Website and Rathi Blogs.">
+    <link rel="canonical" href="http://127.0.0.1:5000/">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/65055605?v=4, https://1000logos.net/wp-content/uploads/2021/09/Optum-Logo.jpg, https://github.com/jayeshrathi6055?tab=repositories, https://in.linkedin.com/in/jayesh-rathi-8594b4180">
     <link rel="icon" href="https://avatars.githubusercontent.com/u/65055605?v=4" />
     <title>Jayesh Rathi</title>
     <link rel="stylesheet" href="{{url_for('static',filename='styles/style.css')}}">
@@ -23,7 +35,7 @@
                     <a>Blogs</a>
                     <div class="blogs_links">
                         {% for blog in blogs %}
-                        <a href="/blogs/{{blog.replace('_','-')}}">{{blog.replace("_", " ")}}</a>
+                        <a target="_blank" href="/blogs/{{blog.replace('_','-')}}">{{blog.replace("_", " ")}}</a>
                         {% endfor %}
                     </div>
                 </li>
@@ -100,7 +112,7 @@
                 <div class="about_card">
                     <p>I have been working here as a Software Engineer since 2022. I have worked on Spring
                         Reactive/Webflux with Kafka, Spring boot, Postgresql and Cucumber Framework.</p>
-                    <a href="https://www.optum.com/">Visit Website</a>
+                    <a target="_blank" href="https://www.optum.com/">Visit Website</a>
                 </div>
             </div>
         </div>
@@ -114,9 +126,9 @@
             <p>Copyright © 2023 jayeshrathi.com</p>
         </div>
         <div class="socialMedia">
-            <a href="https://github.com/jayeshrathi6055?tab=repositories"><img
+            <a target="_blank" href="https://github.com/jayeshrathi6055?tab=repositories"><img
                     src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github"></a>
-            <a href="https://in.linkedin.com/in/jayesh-rathi-8594b4180"><img
+            <a target="_blank" href="https://in.linkedin.com/in/jayesh-rathi-8594b4180"><img
                     src="https://static.vecteezy.com/system/resources/previews/018/930/587/original/linkedin-logo-linkedin-icon-transparent-free-png.png"
                     alt="linkedin"></a>
         </div>
