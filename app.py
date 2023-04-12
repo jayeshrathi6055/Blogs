@@ -21,17 +21,16 @@ def portfolio():
 # Blog Page
 @app.route("/blogs/<slug>", methods=['Get'])
 def baseBlog(slug):
-    files = os.listdir("./templates/blogs/")
     slug = slug.replace("-","_")
-    if slug+".html" in files:
-        return render_template(escape(f"./blogs/{slug}.html"))
-    else:
-        return render_template("./invalid_route.html")
+    try:
+        return render_template(escape(f"blogs/{slug}.html"))
+    except:
+        return render_template("invalid_route.html")
 
 # Not Found Handler
 @app.errorhandler(404)
 def invalid_route(e):
-    return render_template("./invalid_route.html")
+    return render_template("invalid_route.html")
 
 # @app.route("/person")
 # def person():
