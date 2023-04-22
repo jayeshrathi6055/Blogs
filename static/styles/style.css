@@ -12,15 +12,6 @@ html {
     font-size: 65%;
 }
 
-.width100vw {
-    width: 100vw;
-}
-
-.overflowXhidden {
-    overflow-x: hidden;
-}
-
-
 /* Header CSS */
 header {
     position: sticky;
