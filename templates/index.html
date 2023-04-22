@@ -13,17 +13,17 @@
         content="Project based guides for web developer, full stack web developer, frontend, backend, software developer and software engineers. Showing who is Jayesh Rathi.">
     <meta name="keywords"
         content="spring webflux, spring, spring reactive, spring with postgresql, spring webflux with postgresql, spring reactive with postgresql, spring with postgres, spring reactive with postgres, spring webflux with postgres, spring postgresql, spring reactive postgresql, spring webflux postgresql, Jayesh Rathi, Jayesh, Rathi, Jayesh Portfolio, Portfolio, JR, Jayesh JIET, JIET Student, Rathi JIET">
-    <meta name="description"
-        content="Showing about, skills and experience of Jayesh Rathi">
+    <meta name="description" content="Showing about, skills and experience of Jayesh Rathi">
     <link rel="canonical" href="http://127.0.0.1:5000/">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/65055605?v=4, https://1000logos.net/wp-content/uploads/2021/09/Optum-Logo.jpg, https://github.com/jayeshrathi6055?tab=repositories, https://in.linkedin.com/in/jayesh-rathi-8594b4180">
+    <meta property="og:image"
+        content="https://avatars.githubusercontent.com/u/65055605?v=4, https://1000logos.net/wp-content/uploads/2021/09/Optum-Logo.jpg, https://github.com/jayeshrathi6055?tab=repositories, https://in.linkedin.com/in/jayesh-rathi-8594b4180">
     <link rel="icon" href="https://avatars.githubusercontent.com/u/65055605?v=4" />
     <title>Jayesh Rathi</title>
     <link rel="stylesheet" href="{{url_for('static',filename='styles/style.css')}}">
 </head>
 
 <body>
-    <header>
+    <header class="width100vw overflowXhidden">
         <nav>
             <h2>JAYESH RATHI</h2>
             <ul>
@@ -43,7 +43,7 @@
         </nav>
     </header>
 
-    <section class="heroSection">
+    <section class="heroSection width100vw overflowXhidden">
         <div>
             <h1>JAYESH RATHI</h1>
             <div>
@@ -56,41 +56,44 @@
         </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="width100vw overflowXhidden">
         <h2>ABOUT ME</h2>
         <p style="width: 80%; word-spacing: 0.6rem;">
-            I am Jayesh Rathi, currently working as a Software Engineer at Optum Global Solutions. I have completed my Bachelor of Technology in Electrical Engineering from Jodhpur Institute of Engineering and Technology. I am certified full stack web developer, worked on various Technology like Next Js, Flask, Django etc. Scroll down to know more about me.
+            I am Jayesh Rathi, currently working as a Software Engineer at Optum Global Solutions. I have completed my
+            Bachelor of Technology in Electrical Engineering from Jodhpur Institute of Engineering and Technology. I am
+            certified full stack web developer, worked on various Technology like Next Js, Flask, Django etc. Scroll
+            down to know more about me.
         </p>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="width100vw overflowXhidden">
         <h2>SKILLS</h2>
         <div>
-            <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png" alt="html">
-            <img src="https://cdn.mos.cms.futurecdn.net/Vp9WvV7YKdH4k8sKRePcE8.jpg" alt="css">
-            <img src="https://www.citypng.com/public/uploads/preview/js-javascript-round-logo-icon-png-11662226392lsrrajcm0y.png"
+            <img src="{{url_for('static',filename='images/skills/html.webp')}}" alt="html">
+            <img src="{{url_for('static',filename='images/skills/css.jpg')}}" alt="css">
+            <img src="{{url_for('static',filename='images/skills/js.png')}}"
                 alt="js">
-            <img src="https://www.freecodecamp.org/news/content/images/2020/05/Python-language.png" alt="python">
+            <img src="{{url_for('static',filename='images/skills/python.png')}}" alt="python">
 
-            <img src="data:image/png;base64,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"
+            <img src="{{url_for('static',filename='images/skills/nodejs.png')}}"
                 alt="node js">
-            <img src="data:image/png;base64,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"
+            <img src="{{url_for('static',filename='images/skills/nextjs.png')}}"
                 alt="next js">
-            <img src="https://uploads.sitepoint.com/wp-content/uploads/2016/07/1469747664Fotolia_81411059_Subscription_Monthly_M.jpg"
+            <img src="{{url_for('static',filename='images/skills/jquery.webp')}}"
                 alt="jQuery">
-            <img src="https://logos-world.net/wp-content/uploads/2022/07/Java-Logo.png" alt="java">
-            <img src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-dsc/events/spring-boot-1_5zDxm9B.jpg"
+            <img src="{{url_for('static',filename='images/skills/java.png')}}" alt="java">
+            <img src="{{url_for('static',filename='images/skills/springboot.webp')}}"
                 alt="spring boot">
-            <img src="https://velog.velcdn.com/images/nowod_it/post/ed1b5a5a-f075-48e6-b5b7-01e76e3c003d/image.png"
+            <img src="{{url_for('static',filename='images/skills/springwebflux.png')}}"
                 alt="spring webflux">
-            <img src="https://blog.paperspace.com/content/images/size/w1050/2019/11/flasklogo.jpg" alt="flask">
-            <img src="data:image/jpeg;base64,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"
+            <img src="{{url_for('static',filename='images/skills/flask.jpg')}}" alt="flask">
+            <img src="{{url_for('static',filename='images/skills/django.jpeg')}}"
                 alt="django">
-            <img src="https://i0.wp.com/learn.onemonth.com/wp-content/uploads/2019/07/image2-1.png?fit=600%2C315&ssl=1"
+            <img src="{{url_for('static',filename='images/skills/sql.webp')}}"
                 alt="sql">
-            <img src="https://audviklabs.com/wp-content/uploads/2022/01/postgreSQL.png" alt="postgresql">
-            <img src="https://webimages.mongodb.com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png" alt="mongodb">
-            <img src="https://www.rlogical.com/wp-content/uploads/2020/12/MERN-Stack-considered-the-Best-for-Developing-Web-Apps.png"
+            <img src="{{url_for('static',filename='images/skills/postgresql.png')}}" alt="postgresql">
+            <img src="{{url_for('static',filename='images/skills/mongodb.png')}}" alt="mongodb">
+            <img src="{{url_for('static',filename='images/skills/mernstack.webp')}}"
                 alt="mern stack">
         </div>
     </section>
@@ -111,7 +114,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="width100vw overflowXhidden">
         <div class="copyright">
             <img src="https://avatars.githubusercontent.com/u/65055605?v=4" alt="profile photo">
             <h3>JAYESH RATHI</h3>

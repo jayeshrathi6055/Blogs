@@ -1,13 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@500&display=swap');
 
 * {
-    font-size: 65%;
     box-sizing: border-box;
     margin: 0%;
     padding: 0%;
     scroll-behavior: smooth;
     font-family: 'Alkatra', cursive;
 }
+
+html {
+    font-size: 65%;
+}
+
+.width100vw {
+    width: 100vw;
+}
+
+.overflowXhidden {
+    overflow-x: hidden;
+}
+
 
 /* Header CSS */
 header {
@@ -79,10 +91,10 @@ nav ul li a:hover {
 
 /* Hero Section css */
 .heroSection {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
     padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
     background-color: rgb(245 245 245);
 }
 
@@ -95,7 +107,6 @@ nav ul li a:hover {
 .heroSection div h1 {
     font-size: 5rem;
     text-align: center;
-    width: 60rem;
 }
 
 .heroSection div div {
@@ -134,6 +145,8 @@ nav ul li a:hover {
 
 #about h2 {
     font-size: 3.5rem;
+    width: 80%;
+    text-align: center;
 }
 
 #about p {
@@ -156,13 +169,12 @@ nav ul li a:hover {
 }
 
 #skills div {
-    padding: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4rem;
-    width: 70%;
-    flex-wrap: wrap;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    gap: 1rem;
+    width: 100%;
 }
 
 #skills div img {
@@ -273,51 +285,61 @@ footer img {
 
 
 /* Media Queries */
-@media screen and (max-width:1150px) {
-    #skills div {
-        width: 100%;
-        gap: 2rem;
-    }
-}
-
 @media screen and (max-width:950px) {
-    * {
+    html {
         font-size: 50%;
     }
 }
 
 @media screen and (max-width:750px) {
-    * {
+    html {
         font-size: 40%;
     }
 }
 
 @media screen and (max-width:600px) {
-    * {
+    html {
         font-size: 30%;
     }
+
     nav {
         flex-direction: column;
         gap: 2rem;
+    }
+
+    nav ul {
+        gap: 8rem;
     }
 }
 
 @media screen and (max-width:450px) {
     .heroSection {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
         flex-direction: column-reverse;
-    }
-
-    .heroSection div h1 {
-        width: auto;
     }
 
     .about_img {
         height: 30vh;
     }
+
+    nav ul {
+        gap: 5rem;
+    }
+
+    #skills div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #skills div img {
+        width: 15rem;
+        height: 15rem;
+    }
 }
 
 @media screen and (max-width:300px) {
-    
+
 
     footer {
         flex-direction: column;
@@ -326,10 +348,14 @@ footer img {
     .about_img {
         height: 20vh;
     }
+
+    nav ul {
+        gap: 3rem;
+    }
 }
 
 @media screen and (max-width:250px) {
-    * {
+    html {
         font-size: 20%;
     }
 }
