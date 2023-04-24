@@ -23,6 +23,8 @@ nav {
     justify-content: space-evenly;
     align-items: center;
     background-color: rgb(255, 254, 254);
+    transition: all 0.5s linear;
+    position: relative;
 }
 
 nav ul {
@@ -31,6 +33,7 @@ nav ul {
     justify-content: center;
     list-style: none;
     gap: 2rem;
+    transition: all 0.3s ease-in-out;
 }
 
 nav ul li {
@@ -80,13 +83,37 @@ nav ul li a:hover {
     top: 6rem;
 }
 
+.menubar{
+    display: none;
+    flex-direction: column;
+    width: 3rem;
+    gap: 0.3rem;
+}
+.bars{
+width: 100%;
+height: 0.5rem;
+background-color: black;
+}
+
+
 /* Hero Section css */
 .heroSection {
     padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(245 245 245);
+    flex-wrap: wrap-reverse;
+}
+.heroSection div{
+    flex-grow: 1;
+    flex-basis: 0%;
+}
+.heroSection>div:last-child{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .heroSection div img {
@@ -254,6 +281,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .copyright h3 {
@@ -276,77 +304,128 @@ footer img {
 
 
 /* Media Queries */
-@media screen and (max-width:950px) {
-    html {
-        font-size: 50%;
-    }
-}
-
-@media screen and (max-width:750px) {
-    html {
-        font-size: 40%;
-    }
-}
-
-@media screen and (max-width:600px) {
-    html {
-        font-size: 30%;
-    }
-
+@media screen and (max-width:900px) {
     nav {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
     }
-
-    nav ul {
-        gap: 8rem;
-    }
-}
-
-@media screen and (max-width:450px) {
-    .heroSection {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column-reverse;
-    }
-
-    .about_img {
-        height: 30vh;
-    }
-
-    nav ul {
+    nav ul{
         gap: 5rem;
     }
-
-    #skills div {
-        grid-template-columns: repeat(2, 1fr);
+    .heroSection{
+        flex-direction: column-reverse;
     }
-
     #skills div img {
         width: 15rem;
         height: 15rem;
     }
+    
 }
-
-@media screen and (max-width:300px) {
-
-
+@media screen and (max-width:680px) {
+    #skills div {
+        grid-template-columns: repeat(2, 1fr);
+    }
     footer {
         flex-direction: column;
     }
-
-    .about_img {
-        height: 20vh;
+    nav ul{
+        gap: 3rem;
+    }
+    html{
+        font-size: 60%;
+    }
+    .main_card{
+        width: 40rem;
+    }
+    .about_img{
+        height: 33vh;
+    }
+}
+@media screen and (max-width:540px) {
+    .copyright{
+        flex-direction: column;
+        gap: 0rem;
+    }
+    .copyright span{
+        display: none;
+    }
+    footer{
+        gap: 2rem;
+    }
+}
+@media screen and (max-width:490px) {
+    html{
+        font-size: 53%;
+    }
+}
+@media screen and (max-width:430px) {
+    nav ul{
+        flex-direction: column;
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 0%;
+        background-color: white;
+        width: 100%;
+        z-index: -1;
+    }
+    nav{
+        flex-direction: row;
+        cursor: pointer;
+    }
+    .menubar{
+        display: flex;
     }
 
-    nav ul {
-        gap: 3rem;
+.menubar:hover+ul{
+    top: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+nav ul:hover{
+    top: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+.blogs_links{
+    width: 35rem;
+}
+.blogs_links a{
+    text-align: center;
+}
+
+}
+
+@media screen and (max-width:380px) {
+    html{
+        font-size: 48%;
+    }
+    #skills div img {
+        width: 10rem;
+        height: 10rem;
+    }
+    .main_card{
+        width: 30rem;
+    }
+    .about_img{
+        height: 23vh;
+    }
+    #about p{
+        width: 90% !important;
     }
 }
 
-@media screen and (max-width:250px) {
-    html {
-        font-size: 20%;
+@media screen and (max-width:380px){
+    .heroSection div div p{
+        font-size: 1.5rem;
+    }
+    .blogs_links{
+        width: 30rem;
+    }
+}
+
+@media screen and (max-width:260px){
+    html{
+        font-size: 40%;
     }
 }
